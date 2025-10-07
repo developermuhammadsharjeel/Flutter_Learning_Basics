@@ -15,18 +15,18 @@ Each folder represents a learning milestone — with clean, well-commented code 
 ## 🗂️ Repository Structure
 📁 flutter-learning/
 │
-├── 01_hello_world/ 🍼 Your first Flutter app — Hello World!
-├── 02_basic_widgets/ 🧱 Text, Column, Row, Container, Image & more
-├── 03_layouts_and_navigation/ 🧭 Scaffold, AppBar, Drawer, Routes & Navigation
-├── 04_state_management/ 🧠 Stateful Widgets, setState(), basic Provider
-├── 05_forms_and_inputs/ ✍️ TextField, Buttons, Validation
-├── 06_api_integration/ 🌐 Fetching & displaying API data (HTTP + JSON)
-├── 07_local_storage/ 💾 SharedPreferences / Hive basics
-├── 08_animations/ 🎞️ Simple animations & transitions
-├── 09_firebase_basics/ 🔥 Firebase Auth & Database intro
-├── 10_complete_simple_app/ 🏁 Full working app (e.g., ToDo / Notes App)
+├── 01_hello_world/               🍼 Your first Flutter app — Hello World!
+├── 02_basic_widgets/             🧱 Text, Column, Row, Container, Image & more
+├── 03_layouts_and_navigation/    🧭 Scaffold, AppBar, Drawer, Routes & Navigation
+├── 04_state_management/          🧠 Stateful Widgets, setState(), basic Provider
+├── 05_forms_and_inputs/          ✍️ TextField, Buttons, Validation
+├── 06_api_integration/           🌐 Fetching & displaying API data (HTTP + JSON)
+├── 07_local_storage/             💾 SharedPreferences / Hive basics
+├── 08_animations/                🎞️ Simple animations & transitions
+├── 09_firebase_basics/           🔥 Firebase Auth & Database intro
+├── 10_complete_simple_app/       🏁 Full working app (e.g., ToDo / Notes App)
 │
-└── README.md 📖 You are here 🙂
+└── README.md                     📖 You are here 🙂
 
 
 
@@ -97,5 +97,7 @@ Muhammad Sharjeel
 
 💬 "Every expert was once a beginner — keep coding, keep learning, keep building!" 💙
 ⭐ If you like this repo, don’t forget to Star it on GitHub! ⭐
+
+
 
 
