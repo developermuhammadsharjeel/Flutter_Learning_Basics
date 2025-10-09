@@ -85,6 +85,7 @@ class MyApp extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
+                          //-------------- Comments-------------------------------------------------------------------
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: "Enter Your Name",
@@ -120,6 +121,7 @@ class MyApp extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //-------------- Comments-----------------------------------------------------
                   const SizedBox(height: 15),
                   Container(
                     alignment: Alignment.center,
@@ -232,5 +234,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+    
   }
 }
+
