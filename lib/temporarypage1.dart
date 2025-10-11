@@ -14,7 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
 
+        decoration: BoxDecoration(
+        color: Colors.black,
+        boxShadow: [BoxShadow(
+          blurRadius: 3,
+          spreadRadius: 3,
+          color: Colors.black,
+        ),
+        ],
+        ),
+      ),
     );
   }
 }
