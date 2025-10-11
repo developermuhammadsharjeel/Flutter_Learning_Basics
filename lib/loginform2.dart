@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'navigation.dart';
 
 void main() => runApp(
   MaterialApp(
@@ -132,7 +133,14 @@ class MyApp extends StatelessWidget {
                         child: Text("Forget Password ?")),
                   ),
                 const SizedBox(height: 10),
-                ElevatedButton(onPressed: (){},
+
+                ElevatedButton(onPressed: (){
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Mysecond(),
+
+                      ),);
+                },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFFF7043),
                       foregroundColor: Colors.white,
@@ -168,7 +176,9 @@ class MyApp extends StatelessWidget {
                             ),
                           ),
                           child: Text("FaceBook",)),
-                      ElevatedButton(onPressed: (){},
+                      ElevatedButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Mysecond(),));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
@@ -181,7 +191,10 @@ class MyApp extends StatelessWidget {
                       ),
                           child: Text("Git HUb")),
 
-                      ElevatedButton(onPressed: (){},
+                      ElevatedButton(onPressed: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context){return Mysecond();},));
+                      },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.purple,
                             foregroundColor: Colors.white,
