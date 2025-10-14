@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //.....................................................................................................................................................
 //.........SingleChildScrollView used when our content goes beyond screen space
       body: SingleChildScrollView(
         // This adds some space around the content, like a margin.
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
+      //.....................................................................................................................................................
     );
   }
 }
