@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basics/reusable.dart';
+
+/*
+InkWell is a widget in Flutter that provides a rectangular area of a Material that responds to touch.
+It's a great way to make non-button widgets, like Containers, Text, or Images, behave like buttons
+by adding tap, double-tap, long-press gestures and a visual "ripple" effect to indicate user interaction.
+It must have a Material widget as an ancestor.
+*/
 
 void main()=>runApp(
   MaterialApp(
@@ -7,6 +13,8 @@ void main()=>runApp(
     home: MyApp(),
   ),
 );
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
