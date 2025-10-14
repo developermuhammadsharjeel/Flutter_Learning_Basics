@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basics/reusable.dart';
+import 'package:flutter_basics/reusable_widget.dart';
 
 void main()=>runApp(
   MaterialApp(
