@@ -14,19 +14,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-
-        decoration: BoxDecoration(
-        color: Colors.black,
-        boxShadow: [BoxShadow(
-          blurRadius: 3,
-          spreadRadius: 3,
-          color: Colors.black,
-        ),
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              boxShadow: [BoxShadow(
+                spreadRadius: 3,
+                blurRadius: 15,
+                color: Colors.black,
+                offset: Offset(0.3, 0.4),
+              )
+              ],
+            ),
+            child: Text("Sample Data", style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Times New Roman',
+            ),),
+          ),
         ],
-        ),
       ),
     );
   }

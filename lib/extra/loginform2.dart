@@ -8,8 +8,17 @@ void main() => runApp(
   ),
 );
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var nameController = TextEditingController(); ///................................... Name variable make for shared preferences
+
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +256,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-    
+
   }
 }
 
