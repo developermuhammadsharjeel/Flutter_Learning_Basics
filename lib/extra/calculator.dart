@@ -132,6 +132,25 @@ class _MyAppState extends State<MyApp> {
                               ),
                             ),
                           ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Container(
+                            height: 200,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 255, 255, 0.2), // Blue with 50% opacity (0.5)
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image(
+                                image: AssetImage("assets/car.JPEG"),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         )
                       ],
                     ),
