@@ -39,6 +39,7 @@ class _MyAppState extends State<MyApp> {
           child: Image(image: AssetImage('assets/logo.png')),
         ),
 
+
         title: Container(
           height: 40,
           decoration: BoxDecoration(
