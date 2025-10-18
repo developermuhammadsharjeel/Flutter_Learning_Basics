@@ -29,7 +29,7 @@ class Calculator extends StatefulWidget {
   _CalculatorState createState() => _CalculatorState();
 }
 
-/// The state for the [Calculator] widget.
+/// The state for the [Calculator] widget.///////////////////////....................................
 class _CalculatorState extends State<Calculator> {
   /// Variable to hold the current input text.
   String input = '';
@@ -75,7 +75,7 @@ class _CalculatorState extends State<Calculator> {
       }
     });
   }
-
+//..........................................................................................................................................
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,24 +151,19 @@ class _CalculatorState extends State<Calculator> {
       ),
     );
   }
-
-  /// A custom widget that creates a calculator button.
-  ///
-  /// The [label] is the text displayed on the button.
-  /// The [onPressed] callback is executed when the button is pressed.
-  /// If [onPressed] is not provided, the [buttonPressed] method is called with the [label].
+//.....................................................................................................
 
 
 
   Widget calcButton(String label, {VoidCallback? onPressed}) {
     return ElevatedButton(
       onPressed: onPressed ?? () => buttonPressed(label),
-      child: Text(label, style: TextStyle(fontSize: 30)),
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         shape: CircleBorder(),
         backgroundColor: Colors.blueAccent,
       ),
+      child: Text(label, style: TextStyle(fontSize: 30)),
     );
-  }
+  } // widget end here
 }
