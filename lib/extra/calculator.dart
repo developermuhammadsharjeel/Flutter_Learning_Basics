@@ -133,7 +133,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                           ),
                         ),
-
+                        const SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.all(15),
                           child: Container(
