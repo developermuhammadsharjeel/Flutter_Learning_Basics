@@ -1,15 +1,76 @@
 import 'package:flutter/material.dart';
-import '../navigation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'temppage2.dart';
 
 void main() => runApp(
   MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: MyApp(),
+    home: SplashScreen(),
   ),
 );
 
-class MyApp extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  void checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    Timer(Duration(seconds: 2), () {
+      if (isLoggedIn) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Mysecond())
+        );
+      } else {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MyApp())
+        );
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/picture1.JPEG'),
+            fit: BoxFit.cover, // This will make the image cover the whole screen
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
@@ -18,7 +79,41 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var nameController = TextEditingController(); ///................................... Name variable make for shared preferences
+  var passwordController = TextEditingController();
+  bool isLoading = false;
 
+  @override
+  void initState() {
+    super.initState();
+    checkLoginData();
+  }
+
+  void checkLoginData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('username') != null) {
+      nameController.text = prefs.getString('username')!;
+      passwordController.text = prefs.getString('password')!;
+    }
+  }
+
+  void saveLoginData() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', nameController.text);
+    await prefs.setString('password', passwordController.text);
+    await prefs.setBool('isLoggedIn', true);
+
+    setState(() {
+      isLoading = false;
+    });
+
+    Navigator.pushReplacement(context,
+      MaterialPageRoute(builder: (context) => Mysecond()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,18 +172,18 @@ class _MyAppState extends State<MyApp> {
                 children: [
 
                   Container(
-                    margin: EdgeInsetsGeometry.only(top: 60),
+                    margin: EdgeInsets.only(top: 60),
                     height: 150,
                     width: 350,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      boxShadow: [BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        blurRadius: 8,
-                        spreadRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),]
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        boxShadow: [BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          blurRadius: 8,
+                          spreadRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),]
                     ),
 
                     child: Column(
@@ -97,6 +192,7 @@ class _MyAppState extends State<MyApp> {
                           padding: const EdgeInsets.all(8.0),
                           //-------------- Comments-------------------------------------------------------------------
                           child: TextField(
+                            controller: nameController,
                             decoration: InputDecoration(
                               hintText: "Enter Your Name",
                               hintStyle: TextStyle(
@@ -116,6 +212,8 @@ class _MyAppState extends State<MyApp> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: passwordController,
+                            obscureText: true,
                             decoration: InputDecoration(
                               hintText: "Enter Your Password",
                               hintStyle: TextStyle(
@@ -141,15 +239,10 @@ class _MyAppState extends State<MyApp> {
                         ),
                         child: Text("Forget Password ?")),
                   ),
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                ElevatedButton(onPressed: (){
-
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>Mysecond(),
-
-                      ),);
-                },
+                  ElevatedButton(
+                    onPressed: isLoading ? null : saveLoginData,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFFF7043),
                       foregroundColor: Colors.white,
@@ -158,10 +251,13 @@ class _MyAppState extends State<MyApp> {
                         borderRadius: BorderRadius.circular(25),
                       ),
                     ),
-                    child: const Text("Login",style: TextStyle(
+                    child: isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : const Text("Login", style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                    ),) ,),
+                    )),
+                  ),
                   const SizedBox(height: 30),
                   Center(
                     child: Text("Continue With Social Media",style: TextStyle(
@@ -181,23 +277,23 @@ class _MyAppState extends State<MyApp> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 14
+                                horizontal: 30, vertical: 14
                             ),
                           ),
                           child: Text("FaceBook",)),
                       ElevatedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>Mysecond(),));
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 30,
-                        ),
-                      ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 30,
+                            ),
+                          ),
                           child: Text("Git HUb")),
 
                       ElevatedButton(onPressed: (){
@@ -226,11 +322,11 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.white,
                       gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
-                          end: Alignment.bottomRight,
-                          colors:[
-                            Colors.blue.shade200,
-                            Colors.blue.shade500,
-                          ], ),
+                        end: Alignment.bottomRight,
+                        colors:[
+                          Colors.blue.shade200,
+                          Colors.blue.shade500,
+                        ], ),
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [BoxShadow(
                         color: Colors.black26.withOpacity(0.3),
@@ -250,13 +346,10 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ],
               ),
-
             ),
           ],
         ),
       ),
     );
-
   }
 }
-
