@@ -151,7 +151,37 @@ class _MyAppState extends State<MyApp> {
                               ),
                             ),
                           ),
-                        )
+                        ),
+                        //......................Footer
+                        const SizedBox(height: 5),
+                        Container(
+                          width: double.infinity,
+                            padding:EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            decoration: BoxDecoration(
+
+                            color: Color.fromRGBO(255, 255, 255, 0.2),
+                          ),
+                          
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.home),
+                              Icon(Icons.call),
+                              Container(
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blueAccent.withOpacity(0.5),
+                                ),
+                                child: Icon(Icons.add, size: 20, color: Colors.white),
+                              ),
+                              Icon(Icons.image),
+                              Icon(Icons.settings),
+                            ],
+                          ),
+                        ),
+
                       ],
                     ),
                   ),
