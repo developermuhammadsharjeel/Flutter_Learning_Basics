@@ -134,12 +134,12 @@ class _Page2State extends State<Page2> {
                             ),
                           ))),
                   Positioned(
-                      top: 800,
+                      top: 0,
                       child: ElevatedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Page3()));
                       },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue.shade400,),
+                            backgroundColor: Colors.teal,),
                           child: Text("Go To Next Page"))),
 
                   Positioned(

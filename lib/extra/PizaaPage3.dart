@@ -1,41 +1,49 @@
 import 'package:flutter/material.dart';
+import 'PizzaPage2.dart'; // optional, keep only if you actually use it
 
 void main() {
-  runApp(const Page3());
+  runApp(const MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Page3(),
+    );
+  }
+}
 
 class Page3 extends StatelessWidget {
   const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ResponsiveContainerExample(),
-    );
-  }
-}
-
-class ResponsiveContainerExample extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     // Get screen width and height
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    Color PrimaryColor = Colors.pinkAccent;
+    const Color primaryColor = Colors.pinkAccent;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Responsive Container Example'),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.arrow_back, size: 40),
+        ),
+        title: const Text('Responsive Page'),
         backgroundColor: Colors.blueAccent,
       ),
       body: Center(
         child: Container(
-          width: screenWidth * 1,   // 70% of total screen width
-          height: screenHeight * 1, // 30% of total screen height
+          width: screenWidth * 0.7,   // 70% of total screen width
+          height: screenHeight * 0.3, // 30% of total screen height
           decoration: BoxDecoration(
-            color: PrimaryColor,
+            color: primaryColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Center(
