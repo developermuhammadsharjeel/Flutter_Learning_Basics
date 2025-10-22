@@ -61,3 +61,24 @@ class MyAppPage extends StatelessWidget {
     );
   }
 }
+
+
+// important topic
+// FractionallySizedBox 'when we have to give height/ width according to parent box then we use FractionallySizedBox'
+
+//
+// const SizedBox(height: 20),
+// Container(
+// color: Colors.teal,
+// height: screenHeight * 0.2,
+// width: screenWidth * 0.3,
+//
+// child: FractionallySizedBox(
+// heightFactor: 0.5,
+// widthFactor: 0.5,
+// alignment: Alignment.center,
+//
+// child: Container(
+// color: Colors.greenAccent,
+// )
+// )),

@@ -38,25 +38,65 @@ class Page3 extends StatelessWidget {
         title: const Text('Responsive Page'),
         backgroundColor: Colors.blueAccent,
       ),
-      body: Center(
-        child: Container(
-          width: screenWidth * 0.7,   // 70% of total screen width
-          height: screenHeight * 0.3, // 30% of total screen height
-          decoration: BoxDecoration(
-            color: primaryColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Center(
-            child: Text(
-              '70% width\n30% height',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+      body: SizedBox(
+        height: screenHeight,
+        width: screenWidth,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: screenWidth * 0.3,   // 70% of total screen width
+              height: screenHeight * 0.1, // 30% of total screen height
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Center(
+                child: Text(
+                  '70% width\n30% height',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
-          ),
+            const SizedBox(height: 20),
+            Container(
+              color: Colors.teal,
+              height: screenHeight * 0.2,
+              width: screenWidth * 0.3,
+
+              child: FractionallySizedBox(
+              heightFactor: 0.5,
+                widthFactor: 0.5,
+                alignment: Alignment.center,
+
+                child: Container(
+                  color: Colors.greenAccent,
+                )
+              )),
+
+            const SizedBox(height: 20),
+
+            Container(
+              height: screenHeight * 0.3,
+              width: screenWidth * 0.3,
+              color: Colors.greenAccent.shade400,
+              child: FractionallySizedBox(
+                heightFactor: 1,
+                widthFactor: 0.5,
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.black,
+                  height: 20,
+                  width: 20,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
