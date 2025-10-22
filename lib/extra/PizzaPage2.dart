@@ -44,8 +44,8 @@ class _Page2State extends State<Page2> {
       ),
       body: Center(
     child: Container(
-    width: screenWidth * 0.7,   // 70% of screen width
-      height: screenHeight * 0.3, // 30% of screen height
+    width: screenWidth * 0.9,   // 70% of screen width
+      height: screenHeight * 1, // 30% of screen height
       color: Colors.blue,
       child: Center(
         child: Text(
