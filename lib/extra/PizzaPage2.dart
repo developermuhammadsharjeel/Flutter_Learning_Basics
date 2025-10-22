@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basics/MadProject/main.dart';
+import 'PizaaPage3.dart';
 
 void main()=>runApp(
   MaterialApp(
@@ -132,6 +133,14 @@ class _Page2State extends State<Page2> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ))),
+                  Positioned(
+                      top: 800,
+                      child: ElevatedButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Page3()));
+                      },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue.shade400,),
+                          child: Text("Go To Next Page"))),
 
                   Positioned(
                       right: 30,
