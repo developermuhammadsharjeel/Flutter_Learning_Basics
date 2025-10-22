@@ -18,7 +18,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
+  late final screenWidth = MediaQuery.of(context).size.width;
+  late final screenHeight = MediaQuery.of(context).size.height;
+
+
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,8 +49,8 @@ class _MyAppState extends State<MyApp> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Container(
-            width: double.infinity,
-            height: double.infinity,
+            width: screenWidth * 1,
+            height: screenHeight * 1,
 
             decoration: BoxDecoration(
               color: Color.fromRGBO(155, 158, 153,0.8),
