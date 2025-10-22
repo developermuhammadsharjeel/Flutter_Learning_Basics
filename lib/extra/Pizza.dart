@@ -18,6 +18,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late final screenWidth = MediaQuery.of(context).size.width;
+  late final screenHeight = MediaQuery.of(context).size.height;
+
+
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +49,9 @@ class _MyAppState extends State<MyApp> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Container(
+            width: double.infinity,
+            height: double.infinity,
+
             decoration: BoxDecoration(
               color: Color.fromRGBO(155, 158, 153,0.8),
               borderRadius: BorderRadius.circular(25),
@@ -65,7 +72,7 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.12,
+                    height: 100,
                     decoration: BoxDecoration(
                       color: Colors.grey,
                     borderRadius: BorderRadius.circular(30),
@@ -78,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 Padding(padding: EdgeInsets.all(12),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: 80,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(203, 203, 203, 0.7),
@@ -111,63 +118,61 @@ class _MyAppState extends State<MyApp> {
                 
                 //..............................................
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                        width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(203, 203, 203, 0.9),
-                        borderRadius:  BorderRadius.circular(25),
-                      ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text("Deals",style: TextStyle(
-                                  fontFamily: 'Times New Roman',
-                                  fontSize:  30,
-                                  fontWeight: FontWeight.bold,
-                                ),),
-                              ),
+                  padding: const EdgeInsets.all(10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Container(
+                      height: 540,
+                      width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(203, 203, 203, 0.9),
+                      borderRadius:  BorderRadius.circular(25),
+                    ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("Deals",style: TextStyle(
+                                fontFamily: 'Times New Roman',
+                                fontSize:  30,
+                                fontWeight: FontWeight.bold,
+                              ),),
                             ),
+                          ),
 
 
-                            Padding(
-                              padding: const EdgeInsets.all(15),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
 
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(18),
-                                child: Container(
-                                  height: MediaQuery.of(context).size.height * 0.18,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                  child: Image(image: AssetImage('assets/dealbanner1.JPG'),fit: BoxFit.fill,),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(18),
+                              child: Container(
+                                height: 150,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(18),
                                 ),
+                                child: Image(image: AssetImage('assets/dealbanner1.JPG'),fit: BoxFit.fill,),
                               ),
                             ),
+                          ),
 
 
-
-                            Expanded(
-                              child: SingleChildScrollView(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                  ProductBox(
-                                    imagePath: 'assets/deals1.JPG', // Make sure you have this image in your assets
-                                    description: 'A Pizza with Macaroni',
-                                    price: 'Price \$12.99',
-                                    onAddToCart: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Page2()),);
-                                    },
-                                  ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                            ProductBox(
+                              imagePath: 'assets/deals1.JPG', // Make sure you have this image in your assets
+                              description: 'A Pizza with Macaroni',
+                              price: 'Price \$12.99',
+                              onAddToCart: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> Page2()),);
+                              },
+                            ),
                               ProductBox(
                                 imagePath: 'assets/deals2.JPG', // Make sure you have this image in your assets
                                 description: 'A Pizza with Macaroni',
@@ -176,16 +181,14 @@ class _MyAppState extends State<MyApp> {
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> Page2()),);
                                 },
                               ),
-                                                              ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                    ]
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
+                )
+
               ],
             ),
           ),
@@ -229,7 +232,8 @@ class _ProductBoxState extends State<ProductBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (MediaQuery.of(context).size.width / 2) - 40,
+      height: 280, // Adjusted height to fit content
+      width: 150,  // Adjusted width to fit content
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -248,7 +252,7 @@ class _ProductBoxState extends State<ProductBox> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             child: Image.asset(
               widget.imagePath,
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: 120,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
