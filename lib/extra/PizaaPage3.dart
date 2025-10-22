@@ -22,6 +22,7 @@ class ResponsiveContainerExample extends StatelessWidget {
     // Get screen width and height
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    Color PrimaryColor = Colors.pinkAccent;
 
     return Scaffold(
       appBar: AppBar(
@@ -30,10 +31,10 @@ class ResponsiveContainerExample extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          width: screenWidth * 0.7,   // 70% of total screen width
-          height: screenHeight * 0.3, // 30% of total screen height
+          width: screenWidth * 1,   // 70% of total screen width
+          height: screenHeight * 1, // 30% of total screen height
           decoration: BoxDecoration(
-            color: Colors.teal,
+            color: PrimaryColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Center(

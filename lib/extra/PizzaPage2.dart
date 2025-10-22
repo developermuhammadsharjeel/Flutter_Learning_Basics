@@ -16,8 +16,13 @@ class Page2 extends StatefulWidget {
 }
 
 class _Page2State extends State<Page2> {
-  late final screenWidth = MediaQuery.of(context).size.width;
-  late final screenHeight = MediaQuery.of(context).size.height;
+  bool _showChatBox = false;
+  bool _showcart = false;
+
+  Color _Containercolor = Colors.deepOrange.shade400;
+  double _Cheight = 100;
+  double _width = 150;
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +43,133 @@ class _Page2State extends State<Page2> {
           ),),
         ),
         actions: [
-          ElevatedButton(onPressed: (){}
+          ElevatedButton(onPressed: (){
+            setState(() {
+              _showcart = !_showcart;
+              if(_showcart){
+                _Containercolor = Colors.purple.shade400;
+                _width = 300;
+              }
+            });
+          }
               , child: Icon(Icons.add_shopping_cart_rounded)),
         ],
       ),
-      body: Center(
-    child: Container(
-    width: screenWidth * 0.9,   // 70% of screen width
-      height: screenHeight * 1, // 30% of screen height
-      color: Colors.blue,
-      child: Center(
-        child: Text(
-          '70% width, 30% height',
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        ),),
-    ),),
+      body:
+
+      Column(
+        children: [
+          const SizedBox(height: 50,),
+          Container(
+            width: double.infinity,
+            height: 760,
+
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(102, 255, 255, 0.4),
+            ),
+            child: Stack(
+                alignment: Alignment.topCenter,
+
+                children: [
+                  Positioned(
+                    top: 0,
+                    child: box(),
+                  ),
+// 200 * 0.6 = 120. Overlap is 40%, so next box starts at 60% of the previous box's height.
+                  !_showcart
+                      ? Positioned(
+                    top: 120,
+                    child: Container(
+                      height: _Cheight,
+                      width: _width,
+                      decoration: BoxDecoration(
+                          color: _Containercolor,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: 10,
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 5),
+                            )
+                          ]),
+                    ),
+                  )
+                      : const SizedBox.shrink(),
+
+                  Positioned(
+                    top: 240.0,
+                    child: box(),
+                  ),
+                  Positioned(
+                    top: 360.0,
+                    child: box(),
+                  ),
+                  Positioned(
+                      top: 480.0,
+                      child: InkWell(
+                          onTap: (){
+                            Future.delayed(const Duration(seconds: 1), () {
+                              setState(() {
+                                if(_Containercolor == Colors.deepOrange.shade400){
+                                  _Containercolor = Colors.blue.shade400;
+                                  _width = 300;
+                                  _Cheight= 200;
+                                }
+                                else{
+                                  _Containercolor = Colors.deepOrange.shade400;
+                                  _Cheight = 100;
+                                  _width= 150;
+                                }
+                              });
+                            });
+                          },
+                          child: Container(
+                            height: _Cheight,
+                            width: _width,
+                            decoration: BoxDecoration(
+                              color: _Containercolor,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ))),
+
+                  Positioned(
+                      right: 30,
+                      top: 650,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _showChatBox = !_showChatBox;
+                          });
+                        },
+                        child: Icon(Icons.chat, size: 50,),
+                      )),
+                  if (_showChatBox)
+                    Positioned(
+                      right: 100,
+                      bottom: 80, // Positioned above the icon
+                      child: Container(
+                        padding: const EdgeInsets.all(12.0),
+                        height: 100,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5)
+                          ],
+                        ),
+                        child: Text("Hello! How can I help you today?"),
+                      ),
+                    ),
+
+                ] ),
+          ),
+        ],
+      )
     );
   }
 }
@@ -78,119 +195,3 @@ Widget box(){
   );
 }
 
-
-//
-// Column(
-// children: [
-// const SizedBox(height: 50,),
-// Container(
-// width: double.infinity,
-// height: 760,
-//
-// decoration: BoxDecoration(
-// color: Color.fromRGBO(102, 255, 255, 0.4),
-// ),
-// child: Stack(
-// alignment: Alignment.topCenter,
-//
-// children: [
-// Positioned(
-// top: 0,
-// child: box(),
-// ),
-// // 200 * 0.6 = 120. Overlap is 40%, so next box starts at 60% of the previous box's height.
-// !_showcart
-// ? Positioned(
-// top: 120,
-// child: Container(
-// height: _Cheight,
-// width: _width,
-// decoration: BoxDecoration(
-// color: _Containercolor,
-// borderRadius: BorderRadius.circular(20),
-// boxShadow: [
-// BoxShadow(
-// spreadRadius: 10,
-// color: Colors.black.withOpacity(0.3),
-// blurRadius: 10,
-// offset: Offset(0, 5),
-// )
-// ]),
-// ),
-// )
-//     : const SizedBox.shrink(),
-//
-// Positioned(
-// top: 240.0,
-// child: box(),
-// ),
-// Positioned(
-// top: 360.0,
-// child: box(),
-// ),
-// Positioned(
-// top: 480.0,
-// child: InkWell(
-// onTap: (){
-// Future.delayed(const Duration(seconds: 1), () {
-// setState(() {
-// if(_Containercolor == Colors.deepOrange.shade400){
-// _Containercolor = Colors.blue.shade400;
-// _width = 300;
-// _Cheight= 200;
-// }
-// else{
-// _Containercolor = Colors.deepOrange.shade400;
-// _Cheight = 100;
-// _width= 150;
-// }
-// });
-// });
-// },
-// child: Container(
-// height: _Cheight,
-// width: _width,
-// decoration: BoxDecoration(
-// color: _Containercolor,
-// borderRadius: BorderRadius.circular(15),
-// ),
-// ))),
-//
-// Positioned(
-// right: 30,
-// top: 650,
-// child: InkWell(
-// onTap: () {
-// setState(() {
-// _showChatBox = !_showChatBox;
-// });
-// },
-// child: Icon(Icons.chat, size: 50,),
-// )),
-// if (_showChatBox)
-// Positioned(
-// right: 100,
-// bottom: 80, // Positioned above the icon
-// child: Container(
-// padding: const EdgeInsets.all(12.0),
-// height: 100,
-// width: 250,
-// decoration: BoxDecoration(
-// color: Colors.white,
-// borderRadius: BorderRadius.circular(15),
-// boxShadow: [
-// BoxShadow(
-// color: Colors.black.withOpacity(0.2),
-// spreadRadius: 2,
-// blurRadius: 5)
-// ],
-// ),
-// child: Text("Hello! How can I help you today?"),
-// ),
-// ),
-//
-// ] ),
-// ),
-// ],
-// )
-// );
